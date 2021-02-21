@@ -3,7 +3,11 @@ from pymongo import MongoClient
 client = MongoClient()
 db = client.QuoteAPI
 
-def insert_data(coll, obj, database = db): #con esto inserto datos en una coleccion que existe, y si no existe Mongo es muy listo y la crea
+def insert_data(coll, obj, database = db):
+    '''
+     #con esto inserto datos en una coleccion 
+     # que existe, y si no existe Mongo es muy listo y la crea
+    '''
     insert = db[coll].insert_one(obj)
     return insert
 
@@ -20,6 +24,12 @@ def delete_data (coll, query, database = db):
     deletion = database[coll].remove(query)
     return deletion
 
-def create_coll(coll, obj,client=client):
+def create_coll(coll, obj,client=client): #esta esta pendiente de usar
     res = db[coll].insert_one(obj)
     return res
+
+def get_authors(database = db):
+    query = {}
+    project = {"Author":1, "_id":0}
+    authors = (list(db.Quote_Author.find( query, project)))
+    return authors

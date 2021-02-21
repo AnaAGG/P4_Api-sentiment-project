@@ -2,16 +2,22 @@ from flask import Flask, request
 from bson import json_util
 from pymongo import MongoClient
 from biology import insert_biology, list_authors_bio, get_info_bio, delete_biology
-from mongoConnections import read_data, delete_data
+from mongoConnections import read_data, delete_data, get_authors
 from literature import insert_literaty, list_authors_lit, delete_literaty
 from bson import ObjectId
 
 app = Flask("quoteapi")
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 
 @app.route('/') #ESTA FUNCIONA
 def home():
     return "Welcome! This site is a prototype API for famous quotes" #Se mostrará este mensaje cuando arrancas la API
+
+@app.route("/Authors")
+def names():
+    aut = get_authors({})
+    return json_util.dumps(aut)
 
 
 @app.route("/Quotes/<Collection>") #return every quote in a given collection TENDRIA QUE REVISARLA
@@ -28,7 +34,6 @@ def biologist():
 @app.route("/Literature")#devuelve todos los autores de Literatura FUNCIONA
 def literaty():
     return json_util.dumps(list_authors_lit())
-
 
 
 ##DELETE

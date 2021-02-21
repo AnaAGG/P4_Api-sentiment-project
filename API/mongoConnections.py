@@ -32,7 +32,7 @@ def update_general():
     mix_coll = db.Biology.aggregate( [
                         { '$unionWith': "Philosophy"},
                         { '$unionWith': "Literature"},   
-                        { '$project': { '_id': 1, "Quote":1, "Author":1, "Section":1}},
+                        { '$project': { '_id': 1, "Quote":1, "Author":1, "Category":1}},
                         { '$out' : "Quote_Author" } ])
     return mix_coll
 

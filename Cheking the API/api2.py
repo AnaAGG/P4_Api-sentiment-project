@@ -2,52 +2,42 @@ from flask import Flask, request, jsonify
 from bson import json_util
 from pymongo import MongoClient
 from biology import  list_authors_bio, delete_biology, insert_quote_bio
-from mongoConnections import read_data, delete_data, get_authors, get_quotes, update_general
+from mongo import read_data, delete_data, update_general
 from literature import insert_quote_lit, list_authors_lit, delete_literaty, update_literature
+from QuoteAuthors import complete_list
 from bson import ObjectId
 
 app = Flask("quoteapi")
-app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
-
-@app.route('/') #ESTA FUNCIONA
+@app.route('/') #Homepage
 def home():
-    return "Welcome! This site is a prototype API for famous quotes" #Se mostrará este mensaje cuando arrancas la API
+    return "Welcome! This site is a prototype API for famous quotes" 
 
-@app.route("/Authors")
-def all_names():
-    aut = get_authors()
-    return jsonify(aut)
-
-@app.route("/Quotes")
-def all_quotes():
-    aut = get_quotes()
-    return jsonify(aut)
-
-@app.route("/Quotes/<Collection>") #return every quote in a given collection TENDRIA QUE REVISARLA
-def quote(Collection): #ESTA FUNCIONA
-    read  = read_data({}, {"_id":0, "Subcategory": 0, "Author": 0, "Category": 0, "Book": 0}, f"{Collection}")
+@app.route("/Data") #to obtain all the information about authors, categories and phrases from our entire database
+def data():
+    read = complete_list()
     return jsonify(read)
 
-@app.route("/Biology")#devuelve todos los autores de Biologia FUNCIONA
-def biologist():
-    return jsonify(list_authors_bio())
+@app.route("/Authors/<Collection>") #to get all the authors contained in a given collection
+def all_names(Collection):
+    aut = read_data({}, {"_id":0, "Subcategory": 0, "Quote": 0, "Category": 0, "Book": 0}, f"{Collection}")
+    return jsonify(aut)
 
-
-@app.route("/Literature")#devuelve todos los autores de Literatura FUNCIONA
-def literaty():
-    return jsonify(list_authors_lit())
+@app.route("/Quotes/<Collection>") #to get all the phrases contained in a given collection
+def all_quotes(Collection):
+    aut = read_data({}, {"_id":0, "Subcategory": 0, "Author": 0, "Category": 0, "Book": 0}, f"{Collection}")
+    return jsonify(aut)
 
 
 ##DELETE objeos en una colleccion
-@app.route("/Biology/delete") #FUNCIONA, elimina un determinardo autor
+@app.route("/Biology/delete") #Delete a certain author and his / her quote from the biology collection
 def biology_delete():
     args = dict(request.args)
     json_util.dumps(delete_biology(args))
     update_general()
     return "Nice!!! the author has been deleted"
 
-@app.route("/Literature/delete") #FUNCIONA, elimina un determinardo autor
+@app.route("/Literature/delete") # Remove a certain author and his / her citation from the literature collection
 def literature_delete():
     args = dict(request.args)
     json_util.dumps(delete_literaty(args))
@@ -55,13 +45,14 @@ def literature_delete():
     return "Nice!!! the author has been deleted"
 
 #INSERT insertar objetos nuevos en una colleccion
-@app.route("/Biology/new") #FUNCIONA
+@app.route("/Biology/new") # Insert a new author and his citation from the biology collection
 def biology_new():
     args = dict(request.args)
     json_util.dumps(insert_quote_bio(args, "Biology"))
     update_general()
     return "Nice!!! the author has been included"
-@app.route("/Literature/new") #FUNCIONA
+
+@app.route("/Literature/new") # Insert a new author and his citation from the literature collection
 def literaty_new():
     args = dict(request.args)
     json_util.dumps(insert_quote_lit(args, "Literature"))

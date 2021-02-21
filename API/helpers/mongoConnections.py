@@ -11,9 +11,9 @@ def insert_data(coll, obj, database = db):
     insert = db[coll].insert_one(obj)
     return insert
 
-def read_data(query, coll, database = db, project = None): 
-    all_info = database[coll].find(query)
-    return list(all_info)
+def read_data(query, project, coll, database = db): 
+    all_info = list(database[coll].find(query, project))
+    return all_info
 
 def update_data(collection, query, update,database = db):
     setting = {"$set":update}
@@ -33,3 +33,9 @@ def get_authors(database = db):
     project = {"Author":1, "_id":0}
     authors = (list(db.Quote_Author.find( query, project)))
     return authors
+
+def get_quotes(database = db):
+    query = {}
+    project = {"Quote":1, "_id":0}
+    quote = (list(db.Quote_Author.find( query, project)))
+    return quote

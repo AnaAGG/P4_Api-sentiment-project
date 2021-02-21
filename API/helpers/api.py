@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 from bson import json_util
 from pymongo import MongoClient
-from biology import insert_biology, list_authors_bio, delete_biology
-from mongoConnections import read_data, delete_data, get_authors, get_quotes
-from literature import insert_literaty, list_authors_lit, delete_literaty
+from biology import  list_authors_bio, delete_biology, insert_quote_bio
+from mongoConnections import read_data, delete_data, get_authors, get_quotes, update_general
+from literature import insert_quote_lit, list_authors_lit, delete_literaty, update_literature
 from bson import ObjectId
 
 app = Flask("quoteapi")
@@ -39,30 +39,42 @@ def literaty():
     return jsonify(list_authors_lit())
 
 
-##DELETE
-@app.route("/biology/delete") #FUNCIONA, elimina un determinardo id
+##DELETE objeos en una colleccion
+@app.route("/Biology/delete") #FUNCIONA, elimina un determinardo autor
 def biology_delete():
     args = dict(request.args)
-    return json_util.dumps(delete_biology(args))
+    json_util.dumps(delete_biology(args))
+    update_general()
+    return "Nice!!! the author has been deleted"
 
-
-@app.route("/literature/delete") #FUNCIONA, elimina un determinardo id
+@app.route("/Literature/delete") #FUNCIONA, elimina un determinardo autor
 def literature_delete():
     args = dict(request.args)
-    return json_util.dumps(delete_literaty(args))
+    json_util.dumps(delete_literaty(args))
+    update_general()
+    return "Nice!!! the author has been deleted"
 
-#INSERT
-@app.route("/Quotes/Biology/new") #FUNCIONA
+#INSERT insertar objetos nuevos en una colleccion
+@app.route("/Biology/new") #FUNCIONA
 def biology_new():
     args = dict(request.args)
-    id = insert_biology(args, "Biology")
-    json_util.dumps({"_id":id})
-    return "Nice!!! There is a new quote in the Biology collection"
-@app.route("/Quotes/Literature/new") #FUNCIONA
+    json_util.dumps(insert_quote_bio(args, "Biology"))
+    update_general()
+    return "Nice!!! the author has been included"
+@app.route("/Literature/new") #FUNCIONA
 def literaty_new():
     args = dict(request.args)
-    id = insert_literaty(args, "Literature")
-    json_util.dumps({"_id":id})
-    return "Nice!!! There is a new quote in the Literature collection"
-   
+    json_util.dumps(insert_quote_lit(args, "Literature"))
+    update_general()
+    return "Nice!!! the author has been included"
+
 app.run(debug=True)
+
+
+
+
+#UPDATE
+@app.route("/update/literature")
+def update_lit():
+   args = dict(request.args) 
+   return json_util.dumps(update_literature(args))

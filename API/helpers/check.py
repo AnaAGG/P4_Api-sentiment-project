@@ -4,7 +4,7 @@ def check_author(query, coll):
     '''
     descripcion
     '''
-    exist = read_data(query, coll)
+    exist = read_data(query, {}, coll)
 
     if len(exist) > 0:
         return True

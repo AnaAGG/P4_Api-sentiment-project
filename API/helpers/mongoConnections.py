@@ -28,6 +28,14 @@ def create_coll(coll, obj,client=client): #esta esta pendiente de usar
     res = db[coll].insert_one(obj)
     return res
 
+def update_general():
+    mix_coll = db.Biology.aggregate( [
+                        { '$unionWith': "Philosophy"},
+                        { '$unionWith': "Literature"},   
+                        { '$project': { '_id': 1, "Quote":1, "Author":1, "Section":1}},
+                        { '$out' : "Quote_Author" } ])
+    return mix_coll
+
 def get_authors(database = db):
     query = {}
     project = {"Author":1, "_id":0}

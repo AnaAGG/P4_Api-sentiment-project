@@ -32,8 +32,6 @@ def delete_literaty(obj): # donde las key del diccionario seran los documentos d
 def update_literature(obj):
     query= {"_id":ObjectId(obj["id"])}
     obj.pop("id")   
-
-
     if not check_author(query, "Literature"):
         return "The Author you are trying to delete is not in our database"
     if not check_parameters(obj, ["Author", "Quote"]):

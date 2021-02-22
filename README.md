@@ -4,8 +4,10 @@
 
 The main objectives of this project are:
 
-        1. Create an API 
-        3. Perform a sentiment analysis of our API quotes
+        1. Write an API using flask
+            - Serves information to clients (GET method) 
+            - Receives information from the clients (POST method)
+        2. Perform a sentiment analysis of our API quotes
 
 Given the structure of the data that we will have in our API, when I do the sentiment analysis I will evaluate on the one hand if there are differences between the different categories of our database (philosophy, science and literature). I have also evaluated whether within the category there is a difference between genders.
 
@@ -25,19 +27,19 @@ QuoteAPI is an API to collect famous quotes from different authors throughout hi
 
 ## Endpoints Structure
 
-> *"/Data"* --> to obtain all the information about authors, categories and phrases from our entire database
+> *"/Data"* --> GET method. To obtain all the information about authors, categories and phrases from our entire database.  method
 
-> *"/AuthorAndQuote* --> to obtain all the authors of the API
+> *"/AuthorAndQuote* --> GET method. To obtain all the authors of the API
 
-> *"/Authors/<Collection>"* --> to get all the authors contained in a given collection
+> *"/Authors/<Collection>"* --> GET method. To get all the authors contained in a given collection
 
-> *"/Quotes/<Collection>"* --> to get all the quotes contained in a given collection
+> *"/Quotes/<Collection>"* --> GET method. To get all the quotes contained in a given collection
 
-> *"/<Collection>/delete"* --> Delete a certain author and his / her quote from the givrn collections
+> *"/<Collection>/delete"* --> POST method. Delete a certain author and his / her quote from the givrn collections
 
-> *"/<Collection>/new"* --> Insert a new author and his / her citation from the given collection
+> *"/<Collection>/new"* --> POST method. Insert a new author and his / her citation from the given collection
 
-> *"/<Collection>/update"* --> update a new author and his / her citation from the given collection
+> *"/<Collection>/update"* --> POST method. update a new author and his / her citation from the given collection
 
 
 ### Some examples of API calls:
@@ -73,7 +75,6 @@ req = requests.get("http://127.0.0.1:5000/Biology/new", params = quote)
 Returns:
 ['Author successfully inserted']
 ```
-
 
 - To insert and update information in the API it is mandatory to pass the author's name, the citation and the genre.
 

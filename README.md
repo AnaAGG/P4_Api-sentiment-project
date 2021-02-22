@@ -26,6 +26,8 @@ QuoteAPI is an API to collect famous quotes from different authors throughout hi
 
 > *"/Data"* --> to obtain all the information about authors, categories and phrases from our entire database
 
+> */AuthorAndQuote* --> to obtain all the authors of the API
+
 > *"/Authors/<Collection>"* --> to get all the authors contained in a given collection
 
 > *"/Quotes/<Collection>"* --> to get all the quotes contained in a given collection
@@ -42,3 +44,28 @@ QuoteAPI is an API to collect famous quotes from different authors throughout hi
 
 
 # Libraries
+
+[BeautifulSoup](https://pypi.org/project/beautifulsoup4/)  
+[bson](https://pypi.org/project/bson/)  
+[flask](https://flask.palletsprojects.com/en/1.1.x/api/)  
+[json](https://docs.python.org/es/3.9/library/json.html)  
+[langdetect](https://pypi.org/project/langdetect/)  
+[nltk](https://www.nltk.org.htlm)  
+[nltk.corpus](https://www.nltk.org/howto/corpus.html)  
+[nltk.sentiment.vader](https://www.nltk.org/howto/sentiment.html)  
+[nltk.tokenize](https://www.nltk.org/_modules/nltk/tokenize.html)  
+[pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html)  
+[pymongo](https://pypi.org/project/pymongo/)  
+[re](https://docs.python.org/3/library/re.html)  
+[requests](https://pypi.org/project/requests/)  
+[seaborn](https://seaborn.pydata.org/introduction.html)  
+[spacy](https://spacy.io/usage/)  
+[textblob](https://textblob.readthedocs.io/en/dev/)  
+
+
+
+
+
+
+
+

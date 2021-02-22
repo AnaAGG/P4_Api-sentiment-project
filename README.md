@@ -7,6 +7,7 @@ The main objectives of this project are:
         1. Create an API 
         3. Perform a sentiment analysis of our API quotes
 
+Given the structure of the data that we will have in our API, when I do the sentiment analysis I will evaluate on the one hand if there are differences between the different categories of our database (philosophy, science and literature). I have also evaluated whether within the category there is a difference between genders.
 
 # Collection Structure
 
@@ -22,11 +23,11 @@ These three collections will feed into a general collection called Quote_Author 
 QuoteAPI is an API to collect famous quotes from different authors throughout history. This API will collect citations from different disciplines which form the basis of the API structure and therefore of the database in mongo.
 
 
-## Endpoints Structure
+### Endpoints Structure
 
 > *"/Data"* --> to obtain all the information about authors, categories and phrases from our entire database
 
-> */AuthorAndQuote* --> to obtain all the authors of the API
+> *"/AuthorAndQuote* --> to obtain all the authors of the API
 
 > *"/Authors/<Collection>"* --> to get all the authors contained in a given collection
 
@@ -38,10 +39,23 @@ QuoteAPI is an API to collect famous quotes from different authors throughout hi
 
 > *"/<Collection>/update"* --> update a new author and his / her citation from the given collection
 
+```python:
+url_lit_aut = ("http://127.0.0.1:5000/Authors/Literature")
+```
+
+
+
 - To insert and update information in the API it is mandatory to pass the author's name, the citation and the genre.
 
 - To remove information from the API, it is mandatory to enter the id of the object that you want to remove.
 
+# Sentimental Analysis
+Sentiment analysis is a technique that detects the underlying sentiment in a piece of text. It is the process of classifying text as either positive, negative, or neutral. Steps in the Sentimental Analysis:
+
+1. Tokenizing the Data
+2. Normalizing the Data
+3. Removing Noise from the Data
+4. Determining Word Sentiment
 
 # Libraries
 

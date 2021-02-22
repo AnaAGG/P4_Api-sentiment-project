@@ -88,6 +88,8 @@ Sentiment analysis is a technique that detects the underlying sentiment in a pie
 3. Removing Noise from the Data
 4. Determining Word Sentiment
 
+
+![Figure](https://github.com/AnaAGG/P4_Api-sentiment-project/blob/main/Images/Sentimental_Analysis.png)
 # Libraries
 
 [BeautifulSoup](https://pypi.org/project/beautifulsoup4/)  

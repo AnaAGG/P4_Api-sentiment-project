@@ -10,7 +10,8 @@ QuoteAPI is an API to collect famous quotes from different authors throughout hi
 # Collection Structure
 
 
-![esquema](C:\Users\agarc\OneDrive\Escritorio\Esquema.png)
+![esquema](https://github.com/AnaAGG/P4_Api-sentiment-project/blob/main/Images/Esquema.png)
+
 
 # Endpoints Structure
 > *"/Data"* --> to obtain all the information about authors, categories and phrases from our entire database

@@ -23,7 +23,7 @@ These three collections will feed into a general collection called Quote_Author 
 QuoteAPI is an API to collect famous quotes from different authors throughout history. This API will collect citations from different disciplines which form the basis of the API structure and therefore of the database in mongo.
 
 
-### Endpoints Structure
+## Endpoints Structure
 
 > *"/Data"* --> to obtain all the information about authors, categories and phrases from our entire database
 
@@ -39,10 +39,40 @@ QuoteAPI is an API to collect famous quotes from different authors throughout hi
 
 > *"/<Collection>/update"* --> update a new author and his / her citation from the given collection
 
-```python:
-url_lit_aut = ("http://127.0.0.1:5000/Authors/Literature")
+
+### Some examples of API calls:
+
+To read all the authors of the literature collection
+```python: 
+authors = ("http://127.0.0.1:5000/Authors/<Literature>")
+
+Returns: 
+[{'Author': 'Ford Madox Ford'},
+ {'Author': 'Jack Kerouac'},
+ {'Author': 'Leo Tolstoy'},
+ {'Author': 'D. H. Lawrence'},
+ {'Author': 'Gustave Flaubert'}]
 ```
 
+To delete one quote of the literature collection
+```python: 
+delete = url_del_bio = ("http://127.0.0.1:5000/Biology/delete?id=6033b97d14687f7bb0232fa4")
+
+Returns: 
+['Quote successfully deleted']
+```
+
+To insert one quote and author in the biology collection
+```python: 
+quote = {"Author": "Margarita Salas", 
+         "Quote": "Lo importante es no tener arrugas en el cerebro", 
+        "Gender": "F"}
+
+req = requests.get("http://127.0.0.1:5000/Biology/new", params = quote)
+
+Returns:
+['Author successfully inserted']
+```
 
 
 - To insert and update information in the API it is mandatory to pass the author's name, the citation and the genre.

@@ -44,7 +44,7 @@ def delete_prueba(collection):
 def insert_new(collection):
     args = dict(request.args)
     x = json_util.dumps(insert(args, collection))
-    
+    update_general()
     return x
 
 @app.route("/<collection>/update")

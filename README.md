@@ -2,13 +2,15 @@
 
 ![portada](https://www.juliedesk.com/wp-content/uploads/2017/04/Featured-quotes-focus.png)
 
+# API description
 
+QuoteAPI is an API to collect famous quotes from different authors throughout history. This API will collect citations from different disciplines which form the basis of the API structure and therefore of the database in mongo.
 
 
 # Collection Structure
 
 
-
+![esquema](C:\Users\agarc\OneDrive\Escritorio\Esquema.png)
 
 # Endpoints Structure
 > *"/Data"* --> to obtain all the information about authors, categories and phrases from our entire database
@@ -17,11 +19,7 @@
 
 > *"/Quotes/<Collection>"* --> to get all the phrases contained in a given collection
 
-> *"/Biology/delete"* --> Delete a certain author and his / her quote from the biology collection
+> *"/<Collection>/delete"* --> Delete a certain author and his / her quote from the givrn collections
 
-> *"/Literature/delete"* --> Remove a certain author and his / her citation from the literature collection
-
-> *"/Biology/new"* --> Insert a new author and his citation from the biology collection
-
-> *"/Literature/new"* --> Insert a new author and his citation from the literature collection
+> *"/<Collection>/new"* --> Insert a new author and his citation from the given collection
 

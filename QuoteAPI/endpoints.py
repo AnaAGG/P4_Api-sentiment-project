@@ -28,12 +28,12 @@ def delete(obj,Collection):
 def insert(obj,Collection):
 
     if not check_parameters(obj,["Quote", "Author", "Gender"]):
-        return {"response":400, "message": "Bad request: 'Quote', 'Author' and 'Gender' is an obligatory parameter"}
+        return {"Sorry: 'Quote', 'Author' and 'Gender' is an obligatory parameter"}
 
     query = {"Quote":obj['Quote']}
 
     if check_author(query,Collection):
-        return {"response":400,"message": "Bad Request: there is already this quote"}
+        return {"Sorry: Bad Request: there is already this quote"}
     insert_data(obj, f"{Collection}")
     return {"Quote successfully inserted"}
 

@@ -45,23 +45,10 @@ def update(obj,Collection):
 
     query = {"_id":ObjectId(obj['id'])}
 
-    if check_author(query,Collection):
+    if not check_author(query,Collection):
         return {"response":400,"message": "Bad Request: there is already this quote"}
+    obj.pop("id")
     update_data(f"{Collection}",query, update)
     return {"Quote successfully updated"}
 
 
-def add_auth(obj):
-    if not check_parameters(obj,['lit_id','bio_id']):
-        return {"response":400,"message":"Bad Request: 'lit_id' and 'bio_id' are obligatory parameters"}
-    literature = {"_id":ObjectId(obj['lit_id'])}
-    
-    if not check_author(literature,"Literature"):
-        return {"response":400,"message":"Bad Request: movie with given id does not exist"}
-    biology = {"_id":ObjectId(obj['lit_id'])}
-    
-    if not check_author(biology,"Biology"):
-        return {"response":400,"message":"Bad Request: celebrity with given id does not exist"}
-    
-    push_coll("Literature",literature,{"quote":biology['Quote']})
-    return {"response":200,"message":"movie cast successfully updated"}

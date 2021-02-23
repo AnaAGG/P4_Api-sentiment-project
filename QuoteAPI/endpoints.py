@@ -50,5 +50,3 @@ def update(obj,Collection):
     obj.pop("id")
     update_data(f"{Collection}",query, update)
     return {"Quote successfully updated"}
-
-

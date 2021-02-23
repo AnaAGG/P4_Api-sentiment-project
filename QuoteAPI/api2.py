@@ -16,7 +16,7 @@ def data():
     read = complete_list()
     return jsonify(read)
 
-@app.route("/AuthorAndQuote") #to obtain all the authors of the API
+@app.route("/AuthorId") #to obtain all the authors of the API
 def data_aut():
     read = complete_auth()
     return json_util.dumps(read)
